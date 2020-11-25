@@ -5,6 +5,11 @@ import Logo from './components/Logo/Logo'
 import Rank from './components/Rank/Rank'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import Particles from 'react-particles-js';
+import Clarifai from 'clarifai'
+
+const app = new Clarifai.App({
+  apiKey: 'API_KEY'
+ });
 
 const particlesOptions = {
   particles: {
@@ -32,6 +37,14 @@ class App extends Component {
 
   onButtonSubmit = () => {
     console.log('click');
+    app.models.predict(Clarifai.FACE_DETECT_MODEL, "https://samples.clarifai.com/face-det.jpg").then(
+      function(response) {
+        console.log(response);
+      },
+      function(err) {
+        // there was an error
+      }
+    );
   }
 
   render() {
