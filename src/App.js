@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import SignIn from './components/SignIn/SignIn';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
@@ -72,6 +73,7 @@ class App extends Component {
         <Particles className='particles' 
           params={particlesOptions}
         />
+        <SignIn />
         <Navigation />
         <Logo />
         <Rank />
