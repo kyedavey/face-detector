@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SignIn from './components/SignIn/SignIn';
+import Register from './components/Register/Register';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
@@ -79,14 +80,16 @@ class App extends Component {
           params={particlesOptions}
         />
         <Navigation onRouteChange={this.onRouteChange}/>
-        { this.state.route === 'signin'
-          ? <SignIn onRouteChange={this.onRouteChange}/>
-          : <div>
+        { this.state.route === 'home'
+          ? <div>
               <Logo />
               <Rank />
               <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
               <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
             </div>
+          : this.state.route === 'signin'
+          ? <SignIn onRouteChange={this.onRouteChange}/>
+          : <Register onRouteChange={this.onRouteChange}/>
         }
       </div>
     );
