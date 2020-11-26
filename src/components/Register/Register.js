@@ -23,7 +23,7 @@ class Register extends React.Component {
   }
 
   onSubmitRegistration = () => {
-    fetch('https://fathomless-springs-14776.herokuapp.com/register', {
+    fetch('https://kye-face-detector-api.herokuapp.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
