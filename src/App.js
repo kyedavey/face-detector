@@ -11,7 +11,7 @@ import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 
 const app = new Clarifai.App({
-  apiKey: 'API_KEY'
+  apiKey: '0be2e993ce0f4bd09d1bd2c7069c32fc'
  });
 
 const particlesOptions = {
@@ -48,7 +48,7 @@ class App extends Component {
   loadUser = (data) => {
     this.setState({user: {
       id: data.id,
-      name: data.user,
+      name: data.name,
       email: data.email,
       entries: data.entries,
       joined: data.joined 
@@ -82,8 +82,22 @@ class App extends Component {
       .predict(
         Clarifai.FACE_DETECT_MODEL, 
         this.state.input)
-      .then(
-        response => this.displayFaceBox(this.calculateFaceLocation(response)))
+      .then(response => {
+        if (response) {
+          fetch('http://localhost:3000/image', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+          .then(response => response.json())
+          .then(count => {
+            this.setState(Object.assign(this.state.user, { entries: count}))
+          })
+        }
+        this.displayFaceBox(this.calculateFaceLocation(response))
+      })
       .catch(err => console.log(err));
   }
 
