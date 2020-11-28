@@ -19,6 +19,15 @@ const particlesOptions = {
         enable: true,
         value_area: 800
       }
+    },
+    shape: {
+      type: "circle",
+    },
+    size: {
+      value: 5,
+    },
+    move: {
+      speed: 10,
     }
   }
 }
